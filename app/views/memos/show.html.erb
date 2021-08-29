@@ -1,0 +1,94 @@
+<body class="m-s">
+    <header>
+            <div class="header-logo">
+                <h1>SparX</h1>
+            </div>
+            <div class="header-serch">
+                <%= form_tag({controller:"memos",action:"index"}, method: :get) do %>
+                    <%= text_field_tag :search %>
+                    <%= submit_tag '検索する'  %>
+                <% end %>
+            </div>
+            <div class="header-link">
+            <%= link_to 'トップページ', :controller => "top", :action => "index" %>  <%= link_to "新規投稿",  new_memo_path %>  <%= link_to 'いいね', :controller => "top", :action => "index" %> <%= link_to 'マイページ', :controller => "top", :action => "index" %>
+            </div>
+    </header>
+
+    <main class="m-s">
+        <h1>SparX</h1>
+        <h3>メモ詳細</h3>
+        <p><%= @memofi.body %></p>
+        <p><%= @memofi.created_at %></p>
+
+        <% if user_signed_in? %>
+            <% if current_user.already_liked?(@memofi) %>
+                <%= link_to memo_like_path(@memofi), method: :delete do %>
+                    <i class="fas fa-heart"></i><%= @memofi.likes.count %>
+                <% end %>
+            <% else %>
+                <%= link_to memo_likes_path(@memofi), method: :post do %>
+                    <i class="far fa-heart"></i><%= @memofi.likes.count %>
+                <% end %>
+            <% end %>
+        <% else %>
+            <i class="far fa-heart"></i><%= @memofi.likes.count %>
+        <% end %>
+
+        <p>コメント一覧</p>
+
+        <% if user_signed_in? %>
+            <%= form_with(model: [@memofi, @comment], local: true) do |f| %>
+                <%= f.text_area :content %>
+                <%= button_tag type: "submit" do %>
+                    <i class="far fa-comments"></i> コメントする
+                <% end %>
+            <% end %>
+
+            <p>具体</p>
+            <% @comments.each do |c| %>
+                <% if c.content  !=  nil %>
+                <%=safe_join(c.content.split("\n"),tag(:br))%>
+                <%= button_to '削除', memo_comments_path(@memofi, c.id), confirm: 'Are you sure?', method: :delete %>
+                <%= link_to '編集', edit_memo_path(@memofi, c.id) %>
+                <% end %>
+            <% end %>
+
+            <%= form_with(model: [@memofi, @comment], local: true) do |f| %>
+                <%= f.text_area :abstract %>
+                <%= button_tag type: "submit" do %>
+                    <i class="far fa-comments"></i> コメントする
+                <% end %>
+            <% end %>
+
+            <p>抽象</p>
+            <% @comments.each do |c| %>
+                <% if c.abstract  !=  nil %>
+                <%=safe_join(c.abstract.split("\n"),tag(:br))%>
+                <%= button_to '削除', memo_comments_path(@memofi, c.id), confirm: 'Are you sure?', method: :delete %>
+                <%= link_to '編集', edit_memo_path(@memofi, c.id) %>
+                <% end %>
+            <% end %>
+
+            <%= form_with(model: [@memofi, @comment], local: true) do |f| %>
+                <%= f.text_area :diversion %>
+                <%= button_tag type: "submit" do %>
+                    <i class="far fa-comments"></i> コメントする
+                <% end %>
+            <% end %>
+
+            <p>転用</p>
+            <% @comments.each do |c| %>
+                <% if c.diversion  !=  nil %>
+                <%=safe_join(c.diversion.split("\n"),tag(:br))%>
+                <%= button_to '削除', memo_comments_path(@memofi, c.id), confirm: 'Are you sure?', method: :delete %>
+                <%= link_to '編集', edit_memo_path(@memofi, c.id) %>
+                <% end %>
+            <% end %>
+
+        <% end %>
+
+
+        <%= link_to "Memo一覧に戻る", memos_path %>
+        <%= link_to "編集する", edit_memo_path(@memofi.id) %>
+    </main>
+</body>

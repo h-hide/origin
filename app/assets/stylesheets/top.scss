@@ -1,0 +1,50 @@
+// Place all the styles related to the top controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// Place all the styles related to the test controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.top {
+    font-size: 1rem;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: grid;
+    grid-template:
+    "...... ...... ...... ...... ......" 10px
+    "header header header header header" 30px
+    "...... ...... ...... ...... ......"
+    "......  left  ...... right  ......" 3fr
+    "...... ...... ...... ...... ......"
+    "footer footer footer footer footer" 80px
+    "...... ...... ...... ...... ......" 10px
+    / 0.5fr    2fr    auto    2fr  0.5fr;
+}
+header {
+    grid-area: header;
+}
+.top-main-left {
+    grid-area: left;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-main-right {
+    grid-area: right;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+.t-footer {
+    grid-area: footer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

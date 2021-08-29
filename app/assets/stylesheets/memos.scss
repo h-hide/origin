@@ -1,0 +1,50 @@
+// Place all the styles related to the memos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// Place all the styles related to the test controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.memos{
+    font-size: 1rem;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: grid;
+    grid-template:
+        "...... ......  ...... ......" 10px
+        "header header  header header" 30px
+        "...... ......  ...... ......" 10px
+        "...... left    right  ......" 1fr
+        "...... ......  ...... ......"
+        "...... footer  footer ......" 50px
+        "...... ......  ...... ......" 10px
+        / 1fr  2fr     1fr    1fr;
+}
+header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.header-serch{
+    outline: 0.5px solid #DBDBDB;
+}
+nav {
+    grid-area: left;
+    background-color:#FAFAFA;
+    outline:0.5px solid #DBDBDB;
+}
+aside {
+    grid-area: right;
+    background-color:#FAFAFA;
+    outline:0.5px solid #DBDBDB;
+}
+.m-footer {
+    grid-area: footer;
+}
+p{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

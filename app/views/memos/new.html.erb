@@ -1,0 +1,14 @@
+<h1>SparX</h1>
+<h3>新規メモ</h3>
+<%= form_for @memo do |f| %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body, :size => 100*15 %>
+
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+
+    <%= f.submit "Memoを投稿する" %>
+<% end %>
+<%= link_to "memos_indexに戻る", memos_path %>
+
