@@ -3,7 +3,7 @@
         <div class="header-logo">
             <h1>SparX</h1>
         </div>
-        <div class="header-serch">
+        <div class="header-search">
         <%= form_tag({controller:"memos",action:"index"}, method: :get) do %>
             <%= text_field_tag :search %>
             <%= submit_tag '検索する'  %>
