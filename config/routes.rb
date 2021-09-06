@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :memos do
-  resources :likes, only: [:create, :destroy]
-  resources :comments, only: [:create, :destroy, :edit, :update]
+    resources :likes, only: %i[create destroy]
+    resources :comments, only: %i[create destroy edit update]
   end
 
-  get "SparX" => "top#index"
-  root "top#index"
+  get 'SparX' => 'top#index'
+  root 'top#index'
 end
